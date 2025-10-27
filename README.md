@@ -2,8 +2,8 @@
  npm run watch
 
 # for running server 
-npm run dev
-npm run server
+npm run dev<br>
+npm run server<br>
 npm start
 
 # Brevo from smtp mail
@@ -11,10 +11,10 @@ npm start
 
 
 # SMTP CREDENTIALS
-PORT = 587
-SMTP_HOST=smtp-relay.brevo.com
-SMTP_USERNAME=991dbf001@smtp-brevo.com
-SMTP_PASSWORD=SMTP_PASSWORD
+PORT = 587<br>
+SMTP_HOST=smtp-relay.brevo.com<br>
+SMTP_USERNAME=991dbf001@smtp-brevo.com<br>
+SMTP_PASSWORD=SMTP_PASSWORD<br>
 SMTP_SENDER_EMAIL=yogeshs368@gmail.com 
 
 
