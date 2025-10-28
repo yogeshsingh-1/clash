@@ -4,8 +4,10 @@ import ejs from "ejs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { sendEmail } from "./src/config/nodemail.js";
+// queue import 
+import "./src/jobs/index.js"
+import { emailQueue, emailQueueName } from "./src/jobs/EmailJobs.js";
 
-import UserRouter from "./src/routes/user.routes.js"
 const app: Application = express();
 const port = process.env.PORT || 7000;
 
@@ -26,10 +28,19 @@ app.get("/render", async (req: Request, res: Response) => {
     // ejs.renderFile method Dusing for get HTML file
     const html = await ejs.renderFile(`${__dirname}/src/views/emails/welcome.ejs`, { name: "Arjumand Alam" });
     // mail send
-    await sendEmail("arjumand.alam@mygstcafe.in", "Test SMTP", html);
+    await emailQueue.add(emailQueueName, { to: "yogesh.singh@mygstcafe.in", subject: "Testing Queue Email", body: html }); 
+    return res.send("mail send succesfully");
+  } catch (e) {
+    console.log(e);
+  }
+});
+app.get("/sender", async (req: Request, res: Response) => {
 
-    const htmlFilePath = path.join(__dirname, "public", "index.html");
-    return res.sendFile(htmlFilePath);
+  try {
+    const html = await ejs.renderFile(`${__dirname}/src/views/emails/welcome.ejs`, { name: "Arjumand Alam" });
+    // mail send
+    await sendEmail("yogesh.singh@mygstcafe.in", "Test SMTP", html);
+    return res.send("mail send without bullmq succesfully");
   } catch (e) {
     console.log(e);
   }
