@@ -28,7 +28,7 @@ app.get("/render", async (req: Request, res: Response) => {
     // ejs.renderFile method Dusing for get HTML file
     const html = await ejs.renderFile(`${__dirname}/src/views/emails/welcome.ejs`, { name: "Arjumand Alam" });
     // mail send
-    await emailQueue.add(emailQueueName, { to: "yogesh.singh@mygstcafe.in", subject: "Testing Queue Email", body: html }); 
+    await emailQueue.add(emailQueueName, { to: "yogesh.singh@mygstcafe.in", subject: "Testing Queue Email", body: html });
     return res.send("mail send succesfully");
   } catch (e) {
     console.log(e);
@@ -46,3 +46,7 @@ app.get("/sender", async (req: Request, res: Response) => {
   }
 });
 app.listen(port, () => console.log(`server is running on ${port}`));
+
+
+
+// new line added
